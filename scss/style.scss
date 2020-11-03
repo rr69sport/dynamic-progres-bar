@@ -1,6 +1,8 @@
 $height: 20px;
-$bg-color-bar: transparent;
+$bg-color-bar: green;
 $color-bar: red;
+
+:root { --width_bar: 0; }
 
 :root { box-sizing:border-box;}
 
@@ -28,20 +30,21 @@ form{
   border: 1px solid;
 }
 .progress-bar{
-  // position: fixed;
-  // top: 0;
-  // left: 0;
-  width: 100%;
+  width: 50%;
   height: $height;
+  margin-right: auto;
+  margin-left: auto;
 }
 .progress-file {
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
   vertical-align: top;
-
-  width: 100%;
+}
+.progress-file[value] {
+  width: var(--width_bar);
   height: 100%;
+  background-color: $bg-color-bar;
 }
 @mixin bg-bar() {
   background-color: $bg-color-bar;
@@ -52,23 +55,16 @@ form{
 }
 
 /* Fondo de la barra en Firefox, IE, Egde… */
-.progress-file {
+/* Fondo de la barra en Chrome, Safari, Opera… */
+.progress-file,
+.progress-file::-webkit-progress-bar {
   @include bg-bar();
   border: none; /* Firefox añade un borde a la barra */
 }
 
-/* Fondo de la barra en Chrome, Safari, Opera… */
-.progress-file::-webkit-progress-bar {
-  @include bg-bar();
-}
-
-
 /* Relleno de la barra en Chrome, Safari, Opera… */
-.progress-file::-webkit-progress-value {
-  @include load-bar();
-}
-
 /* Relleno de la barra en Firefox, Waterfox, Tor Browser… */
+.progress-file::-webkit-progress-value,
 .progress-file::-moz-progress-bar {
   @include load-bar();
 }

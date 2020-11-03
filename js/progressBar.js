@@ -1,6 +1,7 @@
 const form = document.getElementById('form')
 const uploadFile = form.uploadFile
-const progressFile = document.getElementById('progressFile');
+
+const rootStyles = document.documentElement.style
 
 uploadFile.addEventListener('change', (e) => {
 
@@ -11,16 +12,16 @@ uploadFile.addEventListener('change', (e) => {
 
     fileReader.addEventListener('progress', (e) => {
 
-        progressFile.value = Number.parseInt(e.loaded * 100 / e.total)
+        rootStyles.setProperty('--width_bar', `${Number.parseInt(e.loaded * 100 / e.total)}%`)
 
         fileReader.addEventListener('loadend', (e) => {
 
-            progressFile.value = 100
+            rootStyles.setProperty('--width_bar', `${Number.parseInt(e.loaded * 100 / e.total)}%`)
             console.log(e);
         })
     })
 
     form.addEventListener('reset', () => {
-        progressFile.value = 0;
+        rootStyles.setProperty('--width_bar', '0')
     })
 })
