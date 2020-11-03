@@ -16,7 +16,7 @@ uploadFile.addEventListener('change', (e) => {
 
         fileReader.addEventListener('loadend', (e) => {
 
-            rootStyles.setProperty('--width_bar', `${Number.parseInt(e.loaded * 100 / e.total)}%`)
+            rootStyles.setProperty('--width_bar', `${Number.parseInt(100)}%`)
             console.log(e);
         })
     })
